@@ -47,14 +47,91 @@ def f():
 
 # Define a function named add that takes two numbers and returns the sum.
 
+
+def add(a, b):
+    """
+    The sum of two numbers.
+
+    Parameters
+    ----------
+    a: int, float
+        First number to add.
+    b: int, float
+        Second number to add.
+
+    Returns
+    -------
+    sum: int, float
+       Sum of the two arguments.
+    """
+    return a + b
+
 # Define a function named to_tuple that takes three arguments and returns a
 # tuple of these three arguments.
+
+
+def to_tuple(a, b, c):
+    """
+    Return arguments as tuple.
+
+    Parameters
+    ----------
+    a: object
+        Any object.
+    b: object
+        Any object.
+    c: object
+        Any object.
+
+    Returns
+    -------
+    t: tuple
+       Contains the three function arguments.
+    """
+    return a, b, c
 
 # Define a function named check5 that checks if a number is greater than 5 and
 # returns True or False.
 
+
+def check5(x):
+    """
+    Check if a number is greater than 5.
+
+    Parameters
+    ----------
+    x: int, float
+        Number to check.
+
+    Returns
+    -------
+    status: bool
+       Boolean indicating if the number was greater than 5.
+    """
+    return check_n(x, 5)
+
 # Define a function named check_n that check is a number is greater than n. The
 # number should be the first argument and n the second
+
+
+def check_n(x, n):
+    """
+    Check if a number is greater than another number.
+
+    Parameters
+    ----------
+    x: int, float
+        Number to check.
+    n: int, float
+        Number to check against.
+
+    Returns
+    -------
+    status: bool
+        Boolean indicating if the number was greater than
+        the second argument.
+    """
+    return x > n
 
 #########
 # LISTS #
