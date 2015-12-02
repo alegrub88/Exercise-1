@@ -143,22 +143,129 @@ def check_n(x, n):
 # input list containing for each number in the original list either True or
 # False if the number was greater than or equal to n.
 
+
+def check_list(li, n):
+    """
+    Check if numbers in a list are >= to another number.
+
+    Parameters
+    ----------
+    li: list of int or float
+        List of number to check.
+    n: int or float
+        Number to check against.
+
+    Returns
+    -------
+    r: list of bool
+       Results of the check.
+    """
+    return check_list_nth(li, n, 1)
+
 # Define a function named check_list_nth that does the same as check_list but
 # uses every nth element of the input list (including the first one). You will
 # need a third input argument.
+
+
+def check_list_nth(li, n, nth):
+    """
+    Check if every nth number in a list is >= another number.
+
+    Parameters
+    ----------
+    li: list of int or float
+        List of number to check.
+    n: int or float
+        Number to check against.
+    nth: int
+        Every nth number of the list will be taken.
+
+    Returns
+    -------
+    r: list of bool
+       Results of the check.
+    """
+    return [x >= n for x in li[::nth]]
 
 # Define a function named add_new_list that takes two inputs. A list l and a
 # second variable x to add to the list. Return a new list containing x as the
 # last element without modifying the original list.
 
+
+def add_new_list(li, x):
+    """
+    Add element to new list.
+
+    Parameters
+    ----------
+    li: list
+        Original list to add to.
+    x: object
+        Any object to add to the list.
+
+    Returns
+    -------
+    ln: list
+        New list with x as the last element.
+    """
+    # this is just one way to copy a list which I use here since most of you
+    # used the copy command. Another would be ln = li[:].
+    # It is mainly a matter of taste which one to use.
+    ln = list(li)
+    ln.append(x)
+    return ln
+
+
 # Define a function named remove_nth that takes a list and removes every nth
 # element (including the first one). Use a keyword named nth to set the default
 # value for nth to 2.
+def remove_nth(li, nth=2):
+    """
+    Remove every n-th element from a list.
+
+    Parameters
+    ----------
+    li: list
+        List to remove elements from.
+    nth: int, optional
+        Every n-th element will be removed.
+
+    Returns
+    -------
+    ln: list
+        List with elements removed.
+    """
+    # In this way not the whole list has to be copied but it might be slower.
+    return [x for i, x in enumerate(li) if i % nth != 0]
 
 # Define a function named search_n that takes a list and a variable x and
 # searches for x in the list. If the variable is found return the index of the
 # variable in the list and the variable. Otherwise use None for both return
 # values
+
+
+def search_n(li, x):
+    """
+    Search for element in a list.
+
+    Parameters
+    ----------
+    li: list
+        List to search in.
+    x: object
+        Object to search for in the list.
+
+    Returns
+    -------
+    index: int or None
+        Index at which x was found or None if it was not found.
+    xr: object or None
+        The found object or None if nothing was found
+    """
+    if x in li:
+        return li.index(x), x
+    else:
+        return None, None
 
 ################
 # Dictionaries #
