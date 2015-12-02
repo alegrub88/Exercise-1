@@ -30,6 +30,8 @@
 Module for testing exception handling
 '''
 
+import ex1.functions as functions
+
 ######################
 # Raising Exceptions #
 ######################
@@ -37,6 +39,35 @@ Module for testing exception handling
 # Use the function search_n from the functions module inside a new function
 # also named search_n. The function should do the same as functions.search_n
 # but if the variable is not found in the list then raise a ValueError.
+
+
+def search_n(li, x):
+    """
+    Search for element in a list.
+
+    Parameters
+    ----------
+    li: list
+        List to search in.
+    x: object
+        Object to search for in the list.
+
+    Returns
+    -------
+    index: int
+        Index at which x was found or None if it was not found.
+    xr: object or None
+        The found object or None if nothing was found
+
+    Raises
+    ------
+    ValueError
+        If x was not found in the list
+    """
+    index, xr = functions.search_n(li, x)
+    if index is None:
+        raise ValueError("Element not found in list")
+    return index, xr
 
 ########################
 # Excepting Exceptions #
@@ -46,3 +77,30 @@ Module for testing exception handling
 # the first by the second. This function should handle exceptions that might
 # occur print out what went wrong and return None if no results could be
 # computed.
+
+
+def safe_divide(a, b):
+    """
+    Division of a by b. Includes exception handling.
+
+    Parameters
+    ----------
+    a: int or float
+        Dividend.
+    b: int or float
+        Divisor.
+
+    Returns
+    -------
+    c: int or float or None
+        a / b if not possible then None
+    """
+
+    try:
+        return a / b
+    except ZeroDivisionError:
+        print("Division by Zero not possible")
+    except TypeError as e:
+        print(e)
+
+    return None
