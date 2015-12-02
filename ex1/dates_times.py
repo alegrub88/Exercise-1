@@ -30,15 +30,88 @@
 Exercises for using the datetime and the calendar module
 '''
 
+import calendar
+from datetime import date
+
 # Define a function named last_of_month that takes an argument dt of type date
 # and returns a date object representing the last day of the month dt was in.
+
+
+def last_of_month(dt):
+    """
+    Get the last date of the month.
+
+    Parameters
+    ----------
+    dt: datetime.date
+        Provides the year and month of which the last day is found.
+
+    Returns
+    -------
+    end: datetime.date
+        Last day of month that dt is in.
+    """
+    weekday, last_day = calendar.monthrange(dt.year, dt.month)
+    return date(dt.year, dt.month, last_day)
 
 # Define a function named feed_the_gremlin which takes a time object as an
 # argument. It should return False between midnight and 6:30AM and True
 # otherwise.
+
+
+def feed_the_gremlin(t):
+    """
+    Can we feed the gremlin?
+
+    Parameters
+    ----------
+    t: datetime.time
+        Time we want to know if it is safe to feed the gremlin
+
+    Returns
+    -------
+    f: bool
+       True if we can feed it, False otherwise
+    """
+    return t.hour >= 6 and t.minute >= 30
 
 # Define a function named how_long that takes two datetime objects dt and ref
 # where ref is the reference datetime, calculates the difference between them and
 # returns the difference as a string formatted like:
 # "01 days, 01 minutes, 01 seconds until 2000-12-31 15:59:59"
 # If ref is before dt then use 'since' instead of 'until'
+
+
+def how_long(dt, ref):
+    """
+    Return difference between two datetimes as a formatted string.
+    The format is
+    "01 days, 01 minutes, 01 seconds until 2000-12-31 15:59:59"
+    or
+    "01 days, 01 minutes, 01 seconds since 2000-12-31 15:59:59"
+
+    Parameters
+    ----------
+    dt: datetime.datetime
+        Current datetime.
+    ref: datetime.datetime
+        Reference datetime.
+
+    Returns
+    -------
+    s: string
+       Formatted string.
+    """
+    template = "{:02d} days, {:02d} minutes, {:02d} seconds {} %Y-%m-%d %H:%M:%S"
+
+    if ref > dt:
+        w = 'until'
+        diff = ref - dt
+    else:
+        w = 'since'
+        diff = dt - ref
+
+    return ref.strftime(template.format(diff.days,
+                                        diff.seconds // 60,
+                                        diff.seconds % 60,
+                                        w))
