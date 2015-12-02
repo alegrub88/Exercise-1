@@ -275,11 +275,68 @@ def search_n(li, x):
 # dictionary with the position of the argument as the key (starting at 0) and
 # the argument as the value.
 
+
+def args_to_dict(a, b, c):
+    """
+    Convert arguments to dictionary.
+
+    Parameters
+    ----------
+    a: object
+        First argument.
+    b: object
+        Second argument.
+    c: object
+        Third argument.
+
+    Returns
+    -------
+    d: dict
+        Dictionary of arguments with the number of the argument as the keys.
+    """
+    return args_to_dict_general(a, b, c)
+
 # BONUS: Write a function named args_to_dict_general that does the same for any
 # number of arguments
 
+
+def args_to_dict_general(*args):
+    """
+    Convert arguments to dictionary.
+
+    Parameters
+    ----------
+    args: object
+        Any number of arguments.
+
+    Returns
+    -------
+    d: dict
+        Dictionary of arguments with the number of the argument as the keys.
+    """
+    return {i: k for i, k in enumerate(args)}
+
 # Define a function named lists_to_dict that takes two lists of equal lenght
 # named keys and values and builds a dictionary out of them.
+
+
+def lists_to_dict(keys, values):
+    """
+    Convert two lists to a dictionary.
+
+    Parameters
+    ----------
+    keys: list
+        Keys to use in the dictionary.
+    values: list
+        Values to use in the dictionary.
+
+    Returns
+    -------
+    d: dict
+        Dictionary combined from the input lists.
+    """
+    return {k: v for k, v in zip(keys, values)}
 
 # Define a function named search_list that takes two lists a and b. The
 # function searches for all elements of b in list a. The return value should be
@@ -287,13 +344,87 @@ def search_n(li, x):
 # value of the found element. If nothing was found then return an empty
 # dictionary.
 
+
+def search_list(a, b):
+    """
+    Search elements of b in a.
+
+    Parameters
+    ----------
+    a: list
+        List to search in.
+    b: list
+        List of elements to search in a.
+
+    Returns
+    -------
+    d: dict
+       Keys are the indices of found elements of b in a.
+       Values are the found values of b.
+       Empty dictionary if nothing was found.
+    """
+    return {i: v for i, v in enumerate(a) if v in b}
+
+
 # Define a function named dict_to_string that takes a dictionary and a
 # separator string. The function should only take elements out of the
 # dictionary whose value is a string and then return a single string containing
 # the strings stored in the dictionary seperated by the separator string.
 # Return an empty string if there are no strings in the dictionary.
+def dict_to_string(d, sep):
+    """
+    Extract string out of dictionary and join using the seperator.
+
+    Parameters
+    ----------
+    d: dict
+        Dictionary to extract string values out of.
+    sep: string
+        String to use for seperating the found values in the result.
+
+    Returns
+    -------
+    s: string
+       Seperated by the sep string.
+       If no strings were found in the dict then an empty string.
+    """
+
+    return sep.join([d[x] for x in d if type(d[x]) == str])
+
 
 # Define a function named classify_by_type which takes a list l and returns a
 # dictionary d. The d must have the keys 'int' and 'str' which contain the
 # elements out of l that have this type. Elements that do not fit one of these
 # two types should be stored in a list under the key 'others'
+def classify_by_type(li):
+    """
+    Classify list elements by data type.
+
+    Parameters
+    ----------
+    li: list
+        List to classify
+
+    Returns
+    -------
+    d: dict
+       Dictionary containing the three classes 'int', 'str' and 'other'.
+       Each of this classes is a list of elements out of the original
+       list that fit that type.
+    """
+    # This is written a little more general than necessary but it would allow
+    # easy extension to more classes by modifying the classifier dict
+    classifier = {int: 'int',
+                  str: 'str'}
+
+    d = {'others': []}
+    for c in classifier.values():
+        d[c] = []
+
+    for x in li:
+        try:
+            d[classifier[type(x)]].append(x)
+        except KeyError:
+            d['others'].append(x)
+
+    return d
