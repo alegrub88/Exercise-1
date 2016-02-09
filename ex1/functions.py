@@ -262,9 +262,9 @@ def search_n(li, x):
     xr: object or None
         The found object or None if nothing was found
     """
-    if x in li:
+    try:
         return li.index(x), x
-    else:
+    except ValueError:
         return None, None
 
 ################
