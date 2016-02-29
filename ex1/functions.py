@@ -121,10 +121,11 @@ def add_new_list(l,x):
 # value for nth to 2.
 
 def remove_nth(l,nth=2):
-    """Removes each nth element from l including the first one (WRONG TEST!!!)
+    """Removes each nth element from l including the first one
     """
-    del l[0:len(l):nth]
-    return l
+    res = l[:]
+    del res[0:len(l):nth]
+    return res
     
     
 # Define a function named search_n that takes a list and a variable x and
