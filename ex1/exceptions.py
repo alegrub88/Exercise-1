@@ -38,7 +38,7 @@ Module for testing exception handling
 # also named search_n. The function should do the same as functions.search_n
 # but if the variable is not found in the list then raise a ValueError.
 
-import functions
+from ex1 import functions
 
 def search_n(l,x):
     """Uses functions.search_n but raises a ValueError if no occurance is found
@@ -67,7 +67,7 @@ def safe_divide(a,b):
     try:
         res = a/b
     except:
-        print sys.exc_info()[0]
+        print(sys.exc_info()[0])
         return None
     
     return res

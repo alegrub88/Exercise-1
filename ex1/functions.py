@@ -95,13 +95,11 @@ def check_list(l,n):
 # uses every nth element of the input list (including the first one). You will
 # need a third input argument.
 
-import numpy as np
-
 def check_list_nth(l,v,n):
     """Checks if each n-th value of the list in l is greater than v
     """
     res = []
-    for i in np.arange(0,len(l),n):
+    for i in range(0,len(l),n):
         res.append(l[i]>=v)
     return res
     
